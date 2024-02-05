@@ -164,6 +164,7 @@ export default function Weather() {
               <a
                 href="https://github.com/CatRod/CatRod_WeatherApp"
                 target="_blank"
+                rel="noreferrer"
               >
                 CatRod
               </a>
