@@ -19,9 +19,10 @@ export default function Weather() {
           <div className="col-4">
             <form>
               <input
-                type="text"
+                type="search"
                 className="form-control"
                 placeholder="Enter a city"
+                autoFocus="on"
               />
             </form>
           </div>
@@ -29,14 +30,14 @@ export default function Weather() {
             <input
               type="submit"
               value="SEARCH"
-              className="form-control btn btn-primary"
+              className="form-control btn btn-primary search-button w-100"
             />
           </div>
           <div className="col-3">
             <input
               type="button"
               value="Current Location"
-              className="form-control btn btn-primary"
+              className="form-control btn btn-primary search-button"
             />
           </div>
           <div className="col-3">
