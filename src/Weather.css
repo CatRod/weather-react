@@ -20,9 +20,11 @@ p {
   margin-left: 5px;
 }
 .image {
+  margin-top: 15px;
   text-align: center;
 }
 .info {
+  margin-top: 20px;
   margin-bottom: 0;
 }
 .wind {
@@ -48,6 +50,7 @@ p {
 .rule {
   margin-left: 20px;
   margin-right: 22px;
+  margin-top: 6px;
 }
 .cat {
   text-align: center;
@@ -57,4 +60,7 @@ p {
 .btn {
   font-size: 14px;
   padding-left: 11px;
+}
+.city {
+  margin-left: 1px;
 }
