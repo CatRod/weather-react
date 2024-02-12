@@ -4,23 +4,23 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
+      ready: true,
       city: response.data.name,
       currentTemp: response.data.main.temp,
       feelsTemp: response.data.main.feels_like,
       description: response.data.weather[0].description,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
+      icon: `https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png`,
     });
-    setReady(true);
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="container" text-center>
         <div className="card main">
@@ -64,8 +64,8 @@ export default function Weather() {
               <div className="row">
                 <div className="image">
                   <img
-                    src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
-                    alt="sun"
+                    src={weatherData.icon}
+                    alt={weatherData.description}
                     width="150"
                   />
                 </div>
@@ -79,7 +79,9 @@ export default function Weather() {
                 </p>
               </div>
               <div className="row">
-                <p className="info">{weatherData.description}</p>
+                <p className="info text-capitalize">
+                  {weatherData.description}
+                </p>
                 <p className="wind">Wind: {weatherData.wind} km/h</p>
                 <p className="humidity">Humidity: {weatherData.humidity}%</p>
               </div>
@@ -191,8 +193,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "6e6ec494746b5229a9f2d526478c924c";
-    let city = "Lisbon";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
   }
