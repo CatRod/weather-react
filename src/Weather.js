@@ -7,10 +7,10 @@ import "./Weather.css";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       currentTemp: response.data.main.temp,
       feelsTemp: response.data.main.feels_like,
       description: response.data.weather[0].description,
@@ -50,7 +50,7 @@ export default function Weather(props) {
               />
             </div>
             <div className="col-3">
-              <div className="row">{weatherData.city}</div>
+              <div className="row ms-1">{weatherData.city}</div>
               <div className="row">
                 <FormattedDate date={weatherData.date} />
               </div>
