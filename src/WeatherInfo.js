@@ -7,12 +7,10 @@ export default function WeatherInfo(props) {
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
   function handleResponse(response) {
-    console.log(response.data);
     setForecast(response.data.daily);
     setLoaded(true);
   }
   if (loaded) {
-    console.log(forecast);
     return (
       <div className="WeatherInfo">
         <div className="row">
@@ -89,11 +87,14 @@ export default function WeatherInfo(props) {
     );
   } else {
     let apiKey = "b1cea7t0od14d46cdd6335af4c977e43";
-    let longitude = props.coordinates.lon;
-    let latitude = props.coordinates.lat;
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+    let lon = props.coordinates.lon;
+    let lat = props.coordinates.lat;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(handleResponse);
     return null;
   }
 }
+
+// Preciso de saber como atualizar as coordenadas!!!
+// Era fixe trocar a 1ª API para a da SheCodes...

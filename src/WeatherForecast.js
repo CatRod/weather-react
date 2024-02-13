@@ -33,5 +33,3 @@ export default function WeatherForecast(props) {
     </div>
   );
 }
-
-// Falta inserir o codigo do WeatherInfo.js
