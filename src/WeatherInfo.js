@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WeatherTemp from "./WeatherTemp";
 import axios from "axios";
+import WeatherForecast from "./WeatherForecast";
 
 export default function WeatherInfo(props) {
   let [loaded, setLoaded] = useState(false);
@@ -42,107 +43,32 @@ export default function WeatherInfo(props) {
           </div>
           <div className="col-6">
             <div className="card five-days" styles="width: 17rem;">
-              <div className="row first-day">
-                <div className="col week">{forecast[1].time}</div>
-                <div className="col">
-                  <img
-                    src={forecast[1].condition.icon_url}
-                    alt="sun"
-                    width="50"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row">
-                    {Math.round(forecast[1].temperature.maximum)}°C
-                  </div>
-                  <div className="row min">
-                    {Math.round(forecast[1].temperature.minimum)}°C
-                  </div>
-                </div>
+              <div className="row">
+                <WeatherForecast data={forecast[1]} />
               </div>
               <div className="row rule">
                 <hr />
               </div>
               <div className="row">
-                <div className="col week">Tue</div>
-                <div className="col">
-                  <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAQBJREFUaN7t2csNwyAMBmBGYYSMwhgdgxEYjRW6ARu4HNyqB0CKednElf5b2/hLSALGAICRHKMABSjgUMDdD7xfLifkxByoJOJ33O3/nwHIhVgsKDWKriXhb+0WQD6wJxZegvhlADzrcUDhpeFlpwLyAa5BZ711Na4pgAXFNxFdABw2K4r/R9iRgLiw+N89MQSATxvYFN8F2DB0qkOJCggbi/8m9AASA0AiAXBuA0ziKIDACBAogMgIECkAYBUFKEABzwOIf4yKf5HJnkqIn8wxmk775y5oxC8pj1jUH9FWEd/YOqK1eERz94j2euFqUCF7NzjYbzHpLqUCFKCAJfkAq7RimK7qUtAAAAAASUVORK5CYII="
-                    alt="sun"
-                    width="40"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row">
-                    {Math.round(forecast[2].temperature.maximum)}°C
-                  </div>
-                  <div className="row min">
-                    {Math.round(forecast[2].temperature.minimum)}°C
-                  </div>
-                </div>
+                <WeatherForecast data={forecast[2]} />
               </div>
               <div className="row rule">
                 <hr />
               </div>
               <div className="row">
-                <div className="col week">Wed</div>
-                <div className="col">
-                  <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAQBJREFUaN7t2csNwyAMBmBGYYSMwhgdgxEYjRW6ARu4HNyqB0CKednElf5b2/hLSALGAICRHKMABSjgUMDdD7xfLifkxByoJOJ33O3/nwHIhVgsKDWKriXhb+0WQD6wJxZegvhlADzrcUDhpeFlpwLyAa5BZ711Na4pgAXFNxFdABw2K4r/R9iRgLiw+N89MQSATxvYFN8F2DB0qkOJCggbi/8m9AASA0AiAXBuA0ziKIDACBAogMgIECkAYBUFKEABzwOIf4yKf5HJnkqIn8wxmk775y5oxC8pj1jUH9FWEd/YOqK1eERz94j2euFqUCF7NzjYbzHpLqUCFKCAJfkAq7RimK7qUtAAAAAASUVORK5CYII="
-                    alt="sun"
-                    width="40"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row">
-                    {Math.round(forecast[3].temperature.maximum)}°C
-                  </div>
-                  <div className="row min">
-                    {Math.round(forecast[3].temperature.minimum)}°C
-                  </div>
-                </div>
+                <WeatherForecast data={forecast[3]} />
               </div>
               <div className="row rule">
                 <hr />
               </div>
               <div className="row">
-                <div className="col week">Thu</div>
-                <div className="col">
-                  <img
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAQBJREFUaN7t2csNwyAMBmBGYYSMwhgdgxEYjRW6ARu4HNyqB0CKednElf5b2/hLSALGAICRHKMABSjgUMDdD7xfLifkxByoJOJ33O3/nwHIhVgsKDWKriXhb+0WQD6wJxZegvhlADzrcUDhpeFlpwLyAa5BZ711Na4pgAXFNxFdABw2K4r/R9iRgLiw+N89MQSATxvYFN8F2DB0qkOJCggbi/8m9AASA0AiAXBuA0ziKIDACBAogMgIECkAYBUFKEABzwOIf4yKf5HJnkqIn8wxmk775y5oxC8pj1jUH9FWEd/YOqK1eERz94j2euFqUCF7NzjYbzHpLqUCFKCAJfkAq7RimK7qUtAAAAAASUVORK5CYII="
-                    alt="cloudy"
-                    width="43"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row">
-                    {Math.round(forecast[4].temperature.maximum)}°C
-                  </div>
-                  <div className="row min">
-                    {Math.round(forecast[4].temperature.minimum)}°C
-                  </div>
-                </div>
+                <WeatherForecast data={forecast[4]} />
               </div>
               <div className="row rule">
                 <hr />
               </div>
               <div className="row last-day">
-                <div className="col week">Fri</div>
-                <div className="col">
-                  <img
-                    src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
-                    alt="cloudy"
-                    width="43"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row">
-                    {Math.round(forecast[5].temperature.maximum)}°C
-                  </div>
-                  <div className="row min">
-                    {Math.round(forecast[5].temperature.maximum)}°C
-                  </div>
-                </div>
+                <WeatherForecast data={forecast[5]} />
               </div>
             </div>
           </div>
