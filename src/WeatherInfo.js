@@ -119,7 +119,7 @@ export default function WeatherInfo(props) {
           <small>
             Coded by{" "}
             <a
-              href="https://github.com/CatRod/CatRod_WeatherApp"
+              href="https://github.com/CatRod/weather-react"
               target="_blank"
               rel="noreferrer"
             >
