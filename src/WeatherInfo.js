@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WeatherTemp from "./WeatherTemp";
 import axios from "axios";
 import WeatherForecast from "./WeatherForecast";
@@ -6,14 +6,17 @@ import WeatherForecast from "./WeatherForecast";
 export default function WeatherInfo(props) {
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
   function handleResponse(response) {
-    console.log(`handling response weatherinfo`);
     setForecast(response.data.daily);
     setLoaded(true);
-    props.toggleLoadedForecast();
   }
 
-  if (loaded && props.parentReloaded) {
+  if (loaded) {
     return (
       <div className="WeatherInfo">
         <div className="row">
