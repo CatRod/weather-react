@@ -8,7 +8,10 @@ import "./Weather.css";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [loadForecast, setLoadForecast] = useState(false);
+
   function handleResponse(response) {
+    console.log(`handling response`);
     setWeatherData({
       ready: true,
       coordinates: response.data.coord,
@@ -21,9 +24,16 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
+    toggleLoadedForecast();
+  }
+
+  function toggleLoadedForecast() {
+    setLoadForecast(!loadForecast);
+    console.log("toggleLoadedForecast - toggle", loadForecast);
   }
 
   function search() {
+    console.log(`searching`);
     const apiKey = "6e6ec494746b5229a9f2d526478c924c";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
@@ -31,12 +41,14 @@ export default function Weather(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(`search for city`, city);
     search(city);
   }
 
   function handleCityChange(event) {
     setCity(event.target.value);
   }
+  console.log(`is ready`, weatherData.ready);
 
   if (weatherData.ready) {
     return (
@@ -78,6 +90,8 @@ export default function Weather(props) {
           <WeatherInfo
             data={weatherData}
             coordinates={weatherData.coordinates}
+            toggleLoadedForecast={toggleLoadedForecast}
+            parentReloaded={loadForecast}
           />
         </div>
       </div>
